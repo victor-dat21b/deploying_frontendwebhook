@@ -22,14 +22,14 @@ app.post('/payment_deleted', (req, res) => {
 
 app.post('/subscribe', async (req, res) => {
     const { serverUrl, endpoint } = req.body;
-    await axios.post(`${serverUrl}/subscribe/${endpoint}`, { url: 'http://localhost:4000/' + endpoint });
+    await axios.post(`${serverUrl}/subscribe/${endpoint}`, { url: 'deployingwebhook.azurewebsites.net/' + endpoint });
     console.log(`Subscribed to ${serverUrl}/${endpoint}`);
     res.status(200).send({ message: 'Subscribed to server endpoint' });
 });
 
 app.post('/unsubscribe', async (req, res) => {
     const { serverUrl, endpoint } = req.body;
-    await axios.post(`${serverUrl}/unsubscribe/${endpoint}`, { url: 'http://localhost:4000/' + endpoint });
+    await axios.post(`${serverUrl}/unsubscribe/${endpoint}`, { url: 'deployingwebhook.azurewebsites.net/' + endpoint });
     console.log(`Unsubscribed from ${serverUrl}/${endpoint}`);
     res.status(200).send({ message: 'Unsubscribed from server endpoint' });
 });
@@ -45,4 +45,4 @@ app.get('/ping/:clientUrl', (req, res) => {
     res.status(200).send(subscriptions);
 });
 
-app.listen(port, () => console.log('Client started on port 4000'));
+app.listen(4000, () => console.log('Client started on port 4000'));
